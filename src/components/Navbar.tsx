@@ -11,8 +11,8 @@ const Navbar = () => {
 
   const navLinks = [
     { name: "Home", href: "#" },
-    { name: "Courses", href: "#courses" },
-    { name: "About", href: "#about" },
+    { name: "Curriculum", href: "#curriculum" },
+    { name: "Benefits", href: "#about" },
     { name: "Testimonials", href: "#testimonials" },
   ];
 
@@ -41,13 +41,14 @@ const Navbar = () => {
                 {isAdmin && (
                   <Button variant="outline" size="sm" onClick={() => navigate("/admin")}>Admin Panel</Button>
                 )}
+                <Button variant="outline" size="sm" onClick={() => navigate("/course")}>My Course</Button>
                 <Button variant="ghost" size="sm" onClick={signOut}>Log Out</Button>
               </>
             ) : (
               <>
                 <Button variant="ghost" className="font-medium" onClick={() => navigate("/auth")}>Log In</Button>
                 <Button className="gradient-primary text-primary-foreground font-semibold shadow-soft" onClick={() => navigate("/auth")}>
-                  Get Started
+                  Enroll Now
                 </Button>
               </>
             )}
@@ -70,12 +71,13 @@ const Navbar = () => {
                 {user ? (
                   <>
                     {isAdmin && <Button variant="outline" onClick={() => { navigate("/admin"); setIsOpen(false); }}>Admin Panel</Button>}
+                    <Button variant="outline" onClick={() => { navigate("/course"); setIsOpen(false); }}>My Course</Button>
                     <Button variant="ghost" className="justify-start" onClick={signOut}>Log Out</Button>
                   </>
                 ) : (
                   <>
                     <Button variant="ghost" className="justify-start" onClick={() => { navigate("/auth"); setIsOpen(false); }}>Log In</Button>
-                    <Button className="gradient-primary text-primary-foreground font-semibold" onClick={() => { navigate("/auth"); setIsOpen(false); }}>Get Started</Button>
+                    <Button className="gradient-primary text-primary-foreground font-semibold" onClick={() => { navigate("/auth"); setIsOpen(false); }}>Enroll Now</Button>
                   </>
                 )}
               </div>

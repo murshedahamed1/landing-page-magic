@@ -41,7 +41,7 @@ const Navbar = () => {
                 {isAdmin && (
                   <Button variant="outline" size="sm" onClick={() => navigate("/admin")}>Admin Panel</Button>
                 )}
-                <Button variant="outline" size="sm" onClick={() => navigate("/course")}>My Course</Button>
+                <Button variant="outline" size="sm" onClick={() => navigate("/dashboard")}>Dashboard</Button>
                 <Button variant="ghost" size="sm" onClick={signOut}>Log Out</Button>
               </>
             ) : (
@@ -71,7 +71,7 @@ const Navbar = () => {
                 {user ? (
                   <>
                     {isAdmin && <Button variant="outline" onClick={() => { navigate("/admin"); setIsOpen(false); }}>Admin Panel</Button>}
-                    <Button variant="outline" onClick={() => { navigate("/course"); setIsOpen(false); }}>My Course</Button>
+                    <Button variant="outline" onClick={() => { navigate("/dashboard"); setIsOpen(false); }}>Dashboard</Button>
                     <Button variant="ghost" className="justify-start" onClick={signOut}>Log Out</Button>
                   </>
                 ) : (

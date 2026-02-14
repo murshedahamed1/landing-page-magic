@@ -1,11 +1,24 @@
+import { useEffect, useState } from "react";
 import { ArrowRight, Shield, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
+import { supabase } from "@/integrations/supabase/client";
 
 const CTASection = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
+  const [price, setPrice] = useState("497");
+  const [originalPrice, setOriginalPrice] = useState("997");
+
+  useEffect(() => {
+    supabase.from("site_settings").select("key, value").in("key", ["course_price", "course_original_price"]).then(({ data }) => {
+      (data || []).forEach((s) => {
+        if (s.key === "course_price") setPrice(s.value);
+        if (s.key === "course_original_price") setOriginalPrice(s.value);
+      });
+    });
+  }, []);
 
   return (
     <section className="py-16 lg:py-24 bg-foreground relative overflow-hidden">
@@ -26,13 +39,19 @@ const CTASection = () => {
           </h2>
 
           <p className="text-lg lg:text-xl text-background/70 max-w-2xl mx-auto mb-4">
-            Join 2,847+ students who are already building profitable AI-powered businesses.
+            Start building a profitable AI-powered business today with our step-by-step course.
           </p>
 
           <div className="flex items-center justify-center gap-4 mb-8">
-            <span className="font-display text-4xl font-bold text-background">$497</span>
-            <span className="text-xl text-background/50 line-through">$997</span>
-            <span className="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm font-semibold">50% OFF</span>
+            <span className="font-display text-4xl font-bold text-background">${price}</span>
+            {originalPrice && Number(originalPrice) > Number(price) && (
+              <>
+                <span className="text-xl text-background/50 line-through">${originalPrice}</span>
+                <span className="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm font-semibold">
+                  {Math.round((1 - Number(price) / Number(originalPrice)) * 100)}% OFF
+                </span>
+              </>
+            )}
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">

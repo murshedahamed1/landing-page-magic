@@ -27,7 +27,7 @@ const Auth = () => {
   const { toast } = useToast();
 
   useEffect(() => {
-    if (!loading && user) navigate("/");
+    if (!loading && user) navigate("/dashboard");
   }, [user, loading, navigate]);
 
   const handleSubmit = async (e: React.FormEvent) => {

@@ -38,9 +38,7 @@ const Course = () => {
   const [loading, setLoading] = useState(true);
   const [completedLessons, setCompletedLessons] = useState<Set<string>>(new Set());
 
-  useEffect(() => {
-    if (!authLoading && !user) navigate("/auth");
-  }, [user, authLoading, navigate]);
+  // Redirect handled by ProtectedRoute wrapper
 
   useEffect(() => {
     if (user) loadCourse();

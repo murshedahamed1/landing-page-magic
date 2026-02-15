@@ -94,17 +94,7 @@ const CourseCurriculum = () => {
   }
 
   if (modules.length === 0) {
-    return (
-      <section id="curriculum" className="py-16 lg:py-24 bg-muted/50">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-3xl">
-          <Badge variant="secondary" className="mb-4 text-primary font-medium">Course Curriculum</Badge>
-          <h2 className="font-display text-3xl sm:text-4xl font-bold text-foreground mb-4">
-            Curriculum <span className="text-gradient">Coming Soon</span>
-          </h2>
-          <p className="text-lg text-muted-foreground">The course content is being prepared. Check back soon!</p>
-        </div>
-      </section>
-    );
+    return null;
   }
 
   return (
